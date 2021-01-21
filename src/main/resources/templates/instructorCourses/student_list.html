@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <title>The whole Course List</title>
+</head>
+<body>
+<div class="container">
+    <h3>The list of students enrolled in your course: <span th:text="${courseName}"/> </h3>
+
+    <hr>
+<!--    enrolled student list of the course-->
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>StudentId</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+        <tr th:each="tempStudent : ${studentList}">
+            <td th:text="${tempStudent.id}"/>
+            <td th:text="${tempStudent.firstName + ' ' + tempStudent.lastName}"/>
+            <td th:text="${tempStudent.email}"/>
+
+
+
+
+
+
+        </tr>
+
+
+
+
+
+
+    </table>
+
+    <a th:href="@{/instructorCourses/list}">Back to My Teaching Courses</a>
+</div>
+</body>
+</html>

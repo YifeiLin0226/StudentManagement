@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <title>Save block</title>
+</head>
+<body>
+
+<div class="container">
+    <h3>Block Directory</h3>
+    <hr>
+    <p class="h4 mb-4 container">Save Block for <span th:text="${course.getTitle()}"></span></p>
+
+<!--    take the information entered of a new block and send it to the save page-->
+    <form action="#" th:action="@{/courses/details/save(courseId=${course.getId()})}"
+          th:object="${block}" method="POST">
+        <span style="color: red" th:if="${#fields.hasErrors('seats')}" th:errors="*{seats}"></span>
+        <input type="hidden" th:field="*{id}"/>
+        <span>seats: </span>
+        <input type="text" th:field="*{seats}"
+               class="form-control mb-4 col-4" placeHolder="seats">
+        <span>instructor: </span>
+
+        <select th:field="${block.instructor.id}" >
+            <option th:each="tempInstructor : ${instructorList}" th:value="${tempInstructor.id}" th:text="${tempInstructor.getFirstName() + ' ' + tempInstructor.getLastName()}"></option>
+        </select>
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+<!--    back to the previous page-->
+    <a th:href="@{/courses/details(courseId=${course.getId()})}">Back to Block List</a>
+
+</div>
+
+</body>
+</html>

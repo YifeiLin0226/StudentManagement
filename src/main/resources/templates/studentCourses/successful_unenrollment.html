@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Successfully unenrolled</title>
+</head>
+
+<body style="text-align: center">
+
+<h2>✔️You have successfully unenrolled in this course: <span th:text="${courseTitle}"></span>.</h2>
+
+
+
+<hr>
+
+<a th:href="@{/studentCourses/list}">Back to My Courses</a>
+
+</body>
+
+</html>

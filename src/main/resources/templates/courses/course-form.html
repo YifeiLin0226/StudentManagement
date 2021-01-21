@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <title>Save Course</title>
+</head>
+
+<div class="container">
+    <h3>Course Directory</h3>
+    <hr>
+    <p class="h4 mb-4 container">Save Course</p>
+<!--get the information of a new course and send this course to the save page-->
+    <form action="#" th:action="@{/courses/save}"
+          th:object="${course}" method="POST">
+        <input type="hidden" th:field="*{id}"/>
+        <span style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+        <input type="text" th:field="*{title}"
+               class="form-control mb-4 col-4" placeHolder="Title">
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+<!--go back to the previous page-->
+    <a th:href="@{/courses/list}">Back to Course List</a>
+
+</div>

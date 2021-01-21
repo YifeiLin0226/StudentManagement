@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <title>The whole instructor List</title>
+</head>
+<body>
+<div class="container">
+    <h3>Instructor Directory</h3>
+
+    <hr>
+    <!-- adding an instructor button is only visible to administrators -->
+    <a  th:href="@{/instructors/showFormForAdd}" class="btn btn-primary btn-sm mb-3">Add Instructor</a>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')">Action</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+        <tr th:each="tempInstructor : ${instructors}">
+            <td th:text="${tempInstructor.firstName}"/>
+            <td th:text="${tempInstructor.lastName}"/>
+            <td th:text="${tempInstructor.email}"/>
+
+
+            <!-- updating is only visible to administrators-->
+            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:href="@{/instructors/showFormForUpdate(instructorId=${tempInstructor.id})}"
+                   class="btn btn-info btn-sm">
+                    Update
+                </a>
+
+                <!-- deleting is only visible to administrators -->
+                <a th:href="@{/instructors/delete(instructorId=${tempInstructor.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are you sure you want to delete this instructor?'))) return false">
+                    Delete
+                </a>
+
+
+
+            </td>
+        </tr>
+        </tbody>
+
+
+
+
+
+    </table>
+
+    <a th:href="@{/}">Back to Home</a>
+</div>
+</body>
+</html>

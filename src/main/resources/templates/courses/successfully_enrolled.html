@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Successfully enrolled</title>
+</head>
+
+<body style="text-align: center">
+
+<h2>✔️You have successfully enrolled in this course: <span th:text="${courseTitle}"></span>.</h2>
+
+
+
+<hr>
+
+<a th:href="@{/courses/list}">Back to Course List</a>
+
+</body>
+
+</html>

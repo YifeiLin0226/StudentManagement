@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <title>Course Detail</title>
+</head>
+<body>
+
+    <div class="container">
+        <h3 th:text="${course.getTitle()}"></h3>
+
+<!--        adding a new block button is only visible to administrators-->
+        <a  sec:authorize="hasRole('ROLE_ADMIN')"  th:href="@{/courses/details/showFormForAddBlock(courseId=${course.getId()})}" class="btn btn-primary btn-sm mb-3">Add Block</a>
+
+<!--        the table to show each block in each row-->
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Seats</th>
+                <th>Instructor Name</th>
+                <th>Action</th>
+            </tr>
+
+            </thead>
+            <tr th:each="tempBlock : ${course.getBlocks()}">
+                <td th:text="${tempBlock.getStudents().size()+'/'+tempBlock.getSeats()}"/>
+                <td th:text="${tempBlock.instructor != null}?${tempBlock.instructor.firstName + ' ' + tempBlock.instructor.lastName}"/>
+
+                <td>
+
+                    <!--      only administrator can make change to the block              -->
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/courses/details/showFormForUpdateBlock(blockId=${tempBlock.id},courseId=${tempBlock.getCourse().getId()})}"
+                       class="btn btn-info btn-sm">
+                        Update
+                    </a>
+
+                    <!--      only administrator can delete the block          -->
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/courses/details/delete(blockId=${tempBlock.id},courseId=${course.getId()})}"
+                       class="btn btn-danger btn-sm"
+                       onclick="if (!(confirm('Are you sure you want to delete this block?'))) return false">
+                        Delete
+                    </a>
+
+                    <!-- only student can enroll in a block -->
+                    <a sec:authorize="hasRole('ROLE_STUDENT')" th:if="${tempBlock.getStudents().size()< tempBlock.getSeats()}" th:href="@{/courses/details/enroll(blockId=${tempBlock.id},courseId=${tempBlock.getCourse().getId()})}"
+                       class="btn btn-info btn-sm">
+                        Enroll
+                    </a>
+
+
+                </td>
+            </tr>
+
+
+
+
+
+
+
+
+        </table>
+        <a th:href="@{/courses/list}">Back to Course List</a>
+
+    </div>
+
+
+
+</body>
+</html>

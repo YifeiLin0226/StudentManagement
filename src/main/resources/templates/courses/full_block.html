@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Full Block</title>
+</head>
+
+<body style="text-align: center">
+
+<h2>❌ This block of the course: <span th:text="${courseTitle}"></span> has been full. </h2>
+<h3>Try to enroll in another block with seats available.</h3>
+
+
+<hr>
+
+<a th:href="@{/courses/list}">Back to Course List</a>
+
+</body>
+
+</html>

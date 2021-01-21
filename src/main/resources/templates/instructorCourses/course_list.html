@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <title>The whole Course List</title>
+</head>
+<body>
+<div class="container">
+    <h3>My Teaching Courses</h3>
+
+    <hr>
+<!--    table of teaching courses by the instructor-->
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Title</th>
+            <th>Enrolled students</th>
+            <th>Action</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+        <tr th:each="tempBlock : ${blocks}">
+            <td th:text="${tempBlock.getCourse().getTitle()}"/>
+            <td th:text="${tempBlock.getStudents().size()}">
+
+            <td><a th:if="${tempBlock.getStudents() > 0}" th:href="@{/instructorCourses/students(blockId=${tempBlock.id})}" class="btn btn-info btn-sm">Student List</a> </td>
+
+
+
+
+
+
+        </tr>
+
+
+
+
+
+
+    </table>
+
+    <a th:href="@{/}">Back to Home</a>
+</div>
+</body>
+</html>

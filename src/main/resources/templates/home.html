@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <title>Home Page</title>
+</head>
+<body class="container" style="text-align: center;margin-top: 50px">
+<h3 class="title">Welcome to the home page! <span th:text="${firstName}"></span></h3>
+<a href="instructors/list" class="btn btn-primary btn-sm mb-3">Instructor list</a>
+<a href="students/list" class="btn btn-primary btn-sm mb-3">Student list</a>
+<a href="courses/list" class="btn btn-primary btn-sm mb-3">Course list</a>
+<a sec:authorize="hasRole('STUDENT')" href="studentCourses/list" class="btn btn-primary btn-sm mb-3">My enrolled courses</a>
+<a sec:authorize="hasRole('INSTRUCTOR')" href="instructorCourses/list" class="btn btn-primary btn-sm mb-3">My teaching courses</a>
+<!-- Add a logout button -->
+<form th:action="@{/logout}"
+      method="POST">
+
+    <input type="submit" value="Logout" class="btn btn-outline-primary mt-2" />
+
+</form>
+</body>
+</html>

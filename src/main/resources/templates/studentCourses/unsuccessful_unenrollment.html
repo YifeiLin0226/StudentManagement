@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Unsuccessfully unenrolled</title>
+</head>
+
+<body style="text-align: center">
+
+<h2>❌ There is a problem with the attempt to unenroll from the course: <span th:text="${courseTitle}"></span> </h2>
+<h3>Try to contact with the enrollment service.</h3>
+
+
+<hr>
+
+<a th:href="@{/studentCourses/list}">Back to My Courses</a>
+
+</body>
+
+</html>

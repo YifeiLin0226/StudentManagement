@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Already enrolled</title>
+</head>
+
+<body style="text-align: center">
+
+<h2>❌ You have already enrolled in this course: <span th:text="${courseTitle}"></span> </h2>
+<h3>Try to unenroll from this course first to change your block.</h3>
+
+
+<hr>
+
+<a th:href="@{/courses/list}">Back to Course List</a>
+
+</body>
+
+</html>
