@@ -7,4 +7,4 @@
 **Demo**
 <ul>
   Logged in as a student
-  
+  <img src="https://github.com/YifeiLin0226/StudentManagement/blob/master/demo/student.png">
