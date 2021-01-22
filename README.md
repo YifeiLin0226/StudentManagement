@@ -5,3 +5,6 @@
 <hr><hr>
 
 **Demo**
+<ul>
+  Logged in as a student
+  
