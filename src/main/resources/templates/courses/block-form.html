@@ -17,6 +17,7 @@
           th:object="${block}" method="POST">
         <span style="color: red" th:if="${#fields.hasErrors('seats')}" th:errors="*{seats}"></span>
         <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{students}"/>
         <span>seats: </span>
         <input type="text" th:field="*{seats}"
                class="form-control mb-4 col-4" placeHolder="seats">
